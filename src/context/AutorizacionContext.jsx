@@ -40,7 +40,8 @@ export function AuthProvider({ children }) {
       setIsLoading(true)
       try {
         const result = await mockLogin(username, password)
-        setAuthToken(result.token)
+        console.log(result)
+        setAuthToken(result.token)    
         setLogoutIfExpiredHandler(setUser)
         loadUser()
       } catch (apiError) {

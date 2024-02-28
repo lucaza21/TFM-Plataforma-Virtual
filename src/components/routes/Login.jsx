@@ -2,11 +2,12 @@ import React from 'react'
 import { useState } from 'react';
 import img_login from "../img/img_login.jpg";
 import { useNavigate } from 'react-router-dom';
+import Loader from '../elements/Loader'
 import useAutorizacion from '../../hooks/useAutorizacion';
 
 function Login() {
     const navigate = useNavigate()
-    const { login, isLoading } = useAutorizacion;
+    const { login, isLoading } = useAutorizacion();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errorMsg, setErrorMsg] = useState("")
@@ -20,7 +21,7 @@ function Login() {
             setErrorMsg("Escriba un usuario y una contraseña válidos")
             return
         }
-
+        login(username, password)
         try {
             await login(username, password)
             let b=login(username, password)
@@ -77,7 +78,7 @@ function Login() {
                     </div>
                     <div className="col-lg-8">
                         <div className="card-body py-5 px-md-5">
-                            {isLoading && <Loader message={"loader.text"} />}
+                            {isLoading && <Loader message={"loading"} />}
                             <form
                                 className='formulario'
                                 onSubmit={doLogin}
