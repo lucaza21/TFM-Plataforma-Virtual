@@ -21,11 +21,8 @@ function Login() {
             setErrorMsg("Escriba un usuario y una contraseña válidos")
             return
         }
-        login(username, password)
         try {
             await login(username, password)
-            let b=login(username, password)
-            console.log("variable login "+b)
             navigate("/profesor")
         } catch (e) {
             setErrorMsg("Acceso incorrecto, usuario o contraseña incorrectos, inténtelo de nuevo")

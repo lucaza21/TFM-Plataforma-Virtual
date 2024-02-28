@@ -4,8 +4,7 @@ import PrivateRoute from './components/routes/PrivateRoute';
 import Login from './components/routes/Login';
 import AltaCurso from './components/routes/AltaCurso';
 import Footer from './components/footer';
-import Heather from './components/heather'
-import Prueba from './components/Prueba';
+import Heather from './components/heather';
 
 function App() {
   return (

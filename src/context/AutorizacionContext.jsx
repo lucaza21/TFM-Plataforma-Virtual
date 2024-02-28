@@ -38,15 +38,22 @@ export function AuthProvider({ children }) {
   const login = useCallback(
     async (username, password) => {
       setIsLoading(true)
+
+      const result = await mockLogin(username, password)        
+        
+      console.log('antes del try try')
       try {
+        console.log('entro al try')
         const result = await mockLogin(username, password)
-        console.log(result)
+        
         setAuthToken(result.token)    
         setLogoutIfExpiredHandler(setUser)
         loadUser()
       } catch (apiError) {
+        console.log('entro al catch')
         throw new Error()
       } finally {
+        console.log('entro al finally')
         setIsLoading(false)
       }
     },
