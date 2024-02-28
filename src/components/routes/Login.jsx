@@ -26,7 +26,7 @@ function Login() {
             await login(username, password)
             let b=login(username, password)
             console.log("variable login "+b)
-            navigate("/prueba")
+            navigate("/profesor")
         } catch (e) {
             setErrorMsg("Acceso incorrecto, usuario o contraseña incorrectos, inténtelo de nuevo")
         }
@@ -49,7 +49,6 @@ function Login() {
     }
 
     function readyToSubmit() {
-        console.log("claves"+username+"----"+password)
         return username !== "" && password !== ""
         
     }
