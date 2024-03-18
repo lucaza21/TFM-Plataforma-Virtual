@@ -8,6 +8,8 @@ import Heather from './components/heather';
 import Navbarr from './components/Nav/Navbar';
 import GetCursos from './components/cursos/GetCursos';
 import DetailCursos from './components/cursos/DetailCursos';
+import DetailModulos from './components/modulos/DetailModulos';
+import DetailActividades from './components/actividades/DetailActividades';
 
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
             <>
                <Route path="/cursos" element={<GetCursos />} />
                <Route path="/cursosDetail/:id_curso" element={<DetailCursos />} />
+               <Route path="/modulosDetail/:id_modulo" element={<DetailModulos />} />
+               <Route path="/actividadesDetail/:id_actividad" element={<DetailActividades />} />
               {/*<Route path="/updatecoaster/:coaster_id" element={} /> */}
             </>
             )

@@ -36,7 +36,7 @@ function Navbarr() {
                     (user) && (user.role=='admin') && (
                         <>
                         <Nav.Item>
-                            <Nav.Link as={NavLink} to="/addcoaster">Add Coaster</Nav.Link>
+                            {/* <Nav.Link as={NavLink} to="/addcoaster">Add Coaster</Nav.Link> */}
                         </Nav.Item>
                         </>
                     )
@@ -55,7 +55,7 @@ function Navbarr() {
         (user != null) ? (
             <>
                 <Nav.Item>
-                    <Nav.Link >{user.email}</Nav.Link>
+                    <Nav.Link >Hola {user.email}</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                     <Nav.Link  onClick={() => logOut()}>Logout</Nav.Link>
