@@ -10,20 +10,25 @@ function Login() {
     const { login, isLoading } = useAutorizacion();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [perfil, setPerfil] = useState('alumno');
     const [errorMsg, setErrorMsg] = useState("")
-    
+
     async function doLogin(event) {
         dismissError()
         event.preventDefault()
-        let a=readyToSubmit();
-        console.log("readytosubmit "+a)
+        let a = readyToSubmit();
+        console.log("readytosubmit " + a)
         if (!readyToSubmit()) {
             setErrorMsg("Escriba un usuario y una contraseña válidos")
             return
         }
         try {
-            await login(username, password)
-            navigate("/profesor")
+            await login(username, password, perfil)
+            if (perfil === "alumno"){
+                navigate("/alumno")
+            } else if(perfil === "profesor"){
+                navigate("/profesor")
+            }            
         } catch (e) {
             setErrorMsg("Acceso incorrecto, usuario o contraseña incorrectos, inténtelo de nuevo")
         }
@@ -40,14 +45,20 @@ function Login() {
     }
 
     function onChangePassword(e) {
-        console.log(e.target.value)
         setPassword(e.target.value)
         onChangeAnyInput()
     }
 
+    function onChangePerfil(e) {
+        console.log("impresion on Change Perfil: "+e.target.value)
+        setPerfil(e.target.value)
+        onChangeAnyInput()
+    }
+   
+
     function readyToSubmit() {
         return username !== "" && password !== ""
-        
+
     }
 
     function dismissError() {
@@ -105,11 +116,52 @@ function Login() {
                                         id="form2Example2"
                                         className="form-control"
                                         onChange={onChangePassword}
-                                        placeholder='Introduce tu passwordsgdfgd'
+                                        placeholder='Introduce tu password'
                                     />
                                 </div>
 
+                                {/*Incluir radio button*/}
+                                <div>
+                                    <label className="form-label" htmlFor="form2Example2">
+                                        Elegir el perfil de usuario
+                                    </label>
+                                    <div className="form-check">
+                                        <input
+                                            className="form-check-input"
+                                            defaultChecked
+                                            id="alumno"
+                                            name="perfil"
+                                            type="radio"
+                                            value="alumno"
+                                            onChange={onChangePerfil}
+                                        />
+                                        <label
+                                            className="form-check-label"
+                                            htmlFor="flexRadioDefault1"
+                                        >
+                                            Perfil Alumno
+                                        </label>
+                                    </div>
+                                    <div className="form-check">
+                                        <input
+                                            className="form-check-input"
+                                            id="profesor"
+                                            name="perfil"
+                                            type="radio"
+                                            value="profesor"
+                                            onChange={onChangePerfil}
+                                        />
+                                        <label
+                                            className="form-check-label"
+                                            htmlFor="flexRadioDefault2"
+                                        >
+                                            Perfil Profesor
+                                        </label>
+                                    </div>
+                                </div>
+
                                 {/* Submit button */}
+                                <br></br>
                                 <div>
                                     <button type="submit" className="btn btn-primary btn-block mb-4">
                                         Iniciar sesión
@@ -117,7 +169,7 @@ function Login() {
                                 </div>
                             </form>
                             {errorMsg && <div className="alert alert-danger" role="alert">
-                               {errorMsg}
+                                {errorMsg}
                             </div>}
                         </div>
                     </div>

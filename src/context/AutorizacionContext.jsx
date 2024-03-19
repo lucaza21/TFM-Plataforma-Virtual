@@ -36,17 +36,15 @@ export function AuthProvider({ children }) {
   }, [loadUser])
 
   const login = useCallback(
-    async (username, password) => {
-      setIsLoading(true)
-
-      const result = await mockLogin(username, password)        
-        
-      console.log('antes del try try')
+    async (username, password, perfil) => {
+      setIsLoading(true)     
+      console.log('antes del try try')     
       try {
         console.log('entro al try')
-        const result = await mockLogin(username, password)
-        
+        const result = await mockLogin(username, password, perfil)
+        console.log("imprimier token- "+result.token);
         setAuthToken(result.token)    
+        console.log("después del setAuthToken");
         setLogoutIfExpiredHandler(setUser)
         loadUser()
       } catch (apiError) {

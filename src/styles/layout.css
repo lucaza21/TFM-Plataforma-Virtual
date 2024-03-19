@@ -7,6 +7,7 @@
     background-color: #DD1A19;
     height: 80PX;
     text-align: center;
+    display: none;
 }
 
 #divFlotante {
