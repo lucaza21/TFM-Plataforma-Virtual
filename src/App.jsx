@@ -5,6 +5,14 @@ import Login from './components/routes/Login';
 import AltaCurso from './components/routes/AltaCurso';
 import Footer from './components/footer';
 import Heather from './components/heather';
+import LayoutProfesor from './components/routes/LayoutProfesor';
+import LayoutAlumno from './components/routes/LayoutAlumno';
+import Navbar from './components/Nav/Navbar';
+import GetCursos from './components/cursos/GetCursos';
+import DetailCursos from './components/cursos/DetailCursos';
+import DetailModulos from './components/modulos/DetailModulos';
+import DetailActividades from './components/actividades/DetailActividades';
+import Navbarr from './components/Nav/Navbar';
 
 function App() {
   return (
@@ -12,15 +20,58 @@ function App() {
       <Heather/>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />     
+        <Route path="/login" element={<Login />} />  
         <Route
           path="profesor"
           element={
             <PrivateRoute>
-              <AltaCurso />
+              <LayoutProfesor/>
             </PrivateRoute>
           }
         />
+        {/*módulo de alumno */}
+        <Route
+          path="alumno"
+          element={
+            <PrivateRoute>
+              <Navbarr/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cursos"
+          element={
+            <PrivateRoute>
+              <Navbarr/>
+              <GetCursos/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cursosDetail/:id_curso"
+          element={
+            <PrivateRoute>
+              <DetailCursos/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/modulosDetail/:id_modulo"
+          element={
+            <PrivateRoute>
+              <DetailModulos/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/actividadesDetail/:id_actividad"
+          element={
+            <PrivateRoute>
+              <DetailActividades/>
+            </PrivateRoute>
+          }
+        />
+        {/*fin del módulo de alumno */}
         <Route path="*" element={<Navigate to="." replace />} />
       </Routes>
       <Footer/>

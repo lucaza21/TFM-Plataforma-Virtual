@@ -1,4 +1,4 @@
-//const { jwtDecode } = require('jwt-decode');
+import { jwtDecode } from "jwt-decode";
 import { tokenKey } from "../constant/config"
 
 class WrongCredentialsException extends Error {}
@@ -19,7 +19,9 @@ export function setLogoutIfExpiredHandler(setUser) {
 }
 
 export function setAuthToken(accessToken) {
+  console.log("access token- "+accessToken);
   const tokenPayload = getPayload(accessToken)
+  console.log("tokenPayLoad- "+tokenPayload);
   const token = {
     accessToken: accessToken,
     notBeforeTimestampInMillis: tokenPayload.iat * 1000,
@@ -38,7 +40,8 @@ export function removeAuthToken() {
 }
 
 function getPayload(token) {
-  return jwt_decode(token)
+  console.log("imprimir jwt_decode- "+token);
+  return jwtDecode(token)  
 }
 
 function getToken() {
