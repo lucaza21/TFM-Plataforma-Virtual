@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from "react-router-dom"
 
 import { Journals, FilePlay } from 'react-bootstrap-icons'
+import Player from '../Player/Player'
 
 function DetailModulos() {
 
@@ -59,13 +60,15 @@ function DetailModulos() {
                                         <p>{video.fName}</p>
                                     </article>
                                 </Link>
+                                {/* <Player url={video.url}/> */}
                             </>)
                         })}
                         
                     </>)
                 })
             }
-
+            
+            <Player url={'https://res.cloudinary.com/dm9hihcwt/video/upload/v1710840827/INTRO%20JS/modulo%201/Actividad_1/papel.mp4'}/>
             <br />
             {moduloDetail.id_curso}
             <br />

@@ -26,7 +26,7 @@ function App() {
   return (
     <Router>
       <Heather/>
-      <Navbarr />
+      {/* <Navbarr /> */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />  
